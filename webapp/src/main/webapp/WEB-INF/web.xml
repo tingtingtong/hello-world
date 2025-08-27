@@ -1,9 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-         version="2.5">
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
   <display-name>Webapp</display-name>
+  
+  <!-- Performance optimization filters -->
+  <filter>
+    <filter-name>CompressionFilter</filter-name>
+    <filter-class>org.apache.catalina.filters.CompressionFilter</filter-class>
+    <init-param>
+      <param-name>compressionThreshold</param-name>
+      <param-value>2048</param-value>
+    </init-param>
+    <init-param>
+      <param-name>compressibleMimeType</param-name>
+      <param-value>text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json</param-value>
+    </init-param>
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>CompressionFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- Cache control filter -->
+  <filter>
+    <filter-name>CacheControlFilter</filter-name>
+    <filter-class>com.example.filters.CacheControlFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>CacheControlFilter</filter-name>
+    <url-pattern>*.css</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  
+  <filter-mapping>
+    <filter-name>CacheControlFilter</filter-name>
+    <url-pattern>*.js</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  
+  <filter-mapping>
+    <filter-name>CacheControlFilter</filter-name>
+    <url-pattern>*.png</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  
+  <filter-mapping>
+    <filter-name>CacheControlFilter</filter-name>
+    <url-pattern>*.jpg</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  
+  <filter-mapping>
+    <filter-name>CacheControlFilter</filter-name>
+    <url-pattern>*.gif</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  
+  <!-- Security filter for XSS protection -->
+  <filter>
+    <filter-name>XSSFilter</filter-name>
+    <filter-class>com.example.filters.XSSFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>XSSFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- Performance monitoring filter -->
+  <filter>
+    <filter-name>PerformanceMonitorFilter</filter-name>
+    <filter-class>com.example.filters.PerformanceMonitorFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>PerformanceMonitorFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- Session configuration for performance -->
+  <session-config>
+    <session-timeout>30</session-timeout>
+    <cookie-config>
+      <http-only>true</http-only>
+      <secure>false</secure>
+    </cookie-config>
+  </session-config>
+  
+  <!-- Welcome file list -->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- Error pages for better UX -->
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error/404.jsp</location>
+  </error-page>
+  
+  <error-page>
+    <error-code>500</error-code>
+    <location>/error/500.jsp</location>
+  </error-page>
+  
+  <!-- MIME type mappings for better performance -->
+  <mime-mapping>
+    <extension>css</extension>
+    <mime-type>text/css</mime-type>
+  </mime-mapping>
+  
+  <mime-mapping>
+    <extension>js</extension>
+    <mime-type>application/javascript</mime-type>
+  </mime-mapping>
+  
+  <mime-mapping>
+    <extension>woff</extension>
+    <mime-type>font/woff</mime-type>
+  </mime-mapping>
+  
+  <mime-mapping>
+    <extension>woff2</extension>
+    <mime-type>font/woff2</mime-type>
+  </mime-mapping>
+  
   <!--
   <servlet>
   <servlet-name>HelloWorldExample</servlet-name>
