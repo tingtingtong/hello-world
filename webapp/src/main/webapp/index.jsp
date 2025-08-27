@@ -1,37 +1,69 @@
-<form action="action_page.php">
-  <div class="container">
-    <h1>New user Register for DevOps Learning</h1>
-    <p>Please fill in this form to create an account.</p>
-    <hr>
-     
-    <label for="Name"><b>Enter your Prabudha Name</b></label>
-    <input type="text" placeholder="Enter Full Name" name="Name" id="Name" required>
-    <br>
-    
-    <label for="mobile"><b>Enter mobile NUMBER</b></label>
-    <input type="text" placeholder="Enter moible number" name="mobile" id="mobile" required>
-    <br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DevOps Learning Registration">
+    <title>DevOps Learning Registration</title>
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <h1>Join DevOps Learning</h1>
+            <p class="subtitle">Create your account to start your learning journey</p>
+            
+            <form action="register" method="post" id="registrationForm">
+                <div class="form-group">
+                    <label for="Name">Full Name</label>
+                    <input type="text" placeholder="Enter your full name" name="Name" id="Name" required 
+                           pattern="[a-zA-Z\s]{2,50}" title="Name should contain only letters and spaces">
+                </div>
+                
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" placeholder="Enter mobile number" name="mobile" id="mobile" required 
+                           pattern="[0-9]{10,15}" title="Please enter a valid mobile number">
+                </div>
 
-    <label for="email"><b>Enter Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" id="email" required>
-    <br>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" placeholder="Enter email address" name="email" id="email" required>
+                </div>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-    <br>
+                <div class="form-group">
+                    <label for="psw">Password</label>
+                    <input type="password" placeholder="Enter password" name="psw" id="psw" required 
+                           minlength="8" title="Password must be at least 8 characters long">
+                </div>
 
-    <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-    <hr>
-    <br>
-    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-    <button type="submit" class="registerbtn">Register</button>
-  </div>
-  <div class="container signin">
-    <p>Already have an account? <a href="#">Sign in</a>.</p>
-  </div>
+                <div class="form-group">
+                    <label for="psw-repeat">Confirm Password</label>
+                    <input type="password" placeholder="Confirm password" name="psw-repeat" id="psw-repeat" required>
+                </div>
 
-   <h1> Thankyou, Happy Learning </h1>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the <a href="#" onclick="showTerms()">Terms & Privacy Policy</a></label>
+                </div>
 
-  
-</form>
+                <button type="submit" class="btn-primary">Create Account</button>
+            </form>
+            
+            <div class="signin-link">
+                <p>Already have an account? <a href="#" onclick="showSignIn()">Sign in here</a></p>
+            </div>
+        </div>
+        
+        <div class="success-message">
+            <h2>Thank you for joining us!</h2>
+            <p>Welcome to your DevOps learning journey</p>
+        </div>
+    </div>
+
+    <script src="js/app.min.js" defer></script>
+</body>
+</html>
