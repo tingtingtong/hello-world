@@ -12,8 +12,15 @@
   <url>http://www.example.com</url>
 
   <properties>
-    <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.release>11</maven.compiler.release>
+    <maven.compiler.fork>true</maven.compiler.fork>
+    <maven.compiler.optimize>true</maven.compiler.optimize>
+    <maven.compiler.showWarnings>false</maven.compiler.showWarnings>
+    <maven.compiler.showDeprecation>false</maven.compiler.showDeprecation>
   </properties>
 
   <modules>
@@ -33,17 +40,60 @@
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>11</source>
+          <target>11</target>
+          <compilerArgs>
+            <arg>-parameters</arg>
+          </compilerArgs>
         </configuration>
       </plugin>
 
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
+        <version>3.0.0</version>
         <configuration>
           <autoVersionSubmodules>true</autoVersionSubmodules>
         </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>3.4.1</version>
+        <executions>
+          <execution>
+            <id>enforce-maven</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <version>3.6.0</version>
+                </requireMavenVersion>
+                <requireJavaVersion>
+                  <version>11</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.6.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>analyze</goal>
+              <goal>analyze-duplicate</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
@@ -93,7 +143,7 @@
 
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>2.3.2</version>
+          <version>3.11.0</version>
         </plugin>
 
         <plugin>
@@ -123,28 +173,28 @@
 
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>2.5</version>
+          <version>3.3.1</version>
         </plugin>
 
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.0</version>
+          <version>4.0.0-M9</version>
         </plugin>
 
         <plugin>
           <artifactId>maven-surefire-report-plugin</artifactId>
-          <version>2.11</version>
+          <version>3.1.2</version>
         </plugin>
 
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.11</version>
+          <version>3.1.2</version>
         </plugin>
 
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>findbugs-maven-plugin</artifactId>
-          <version>2.3.3</version>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>4.7.3.6</version>
         </plugin>
 
         <plugin>
@@ -154,9 +204,9 @@
         </plugin>
 
         <plugin>
-          <groupId>org.mortbay.jetty</groupId>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-maven-plugin</artifactId>
-          <version>8.0.0.M1</version>
+          <version>11.0.15</version>
         </plugin>
       </plugins>
     </pluginManagement>
