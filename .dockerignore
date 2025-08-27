@@ -1,0 +1,36 @@
+# Version control
+.git
+.gitignore
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# Build artifacts (exclude as we build inside container)
+target/
+*.jar
+*.war
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+*.md
+
+# Kubernetes/Docker configs (except what we need)
+regapp-*.yml
+
+# Maven wrapper (we use the container's maven)
+.mvn/
+mvnw
+mvnw.cmd
+
+# Test files
+**/src/test/
+
+# Temporary files
+*.tmp
+*.log
