@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<performance-config>
+  <!-- Performance optimization settings -->
+  
+  <!-- Resource compression settings -->
+  <compression>
+    <enabled>true</enabled>
+    <threshold>2048</threshold>
+    <mime-types>
+      <mime-type>text/css</mime-type>
+      <mime-type>application/javascript</mime-type>
+      <mime-type>text/html</mime-type>
+      <mime-type>text/xml</mime-type>
+      <mime-type>text/plain</mime-type>
+      <mime-type>application/json</mime-type>
+    </mime-types>
+  </compression>
+  
+  <!-- Caching settings -->
+  <caching>
+    <static-resources>
+      <css>max-age=31536000</css>
+      <javascript>max-age=31536000</javascript>
+      <images>max-age=31536000</images>
+      <fonts>max-age=31536000</fonts>
+    </static-resources>
+    <dynamic-content>
+      <jsp>max-age=300</jsp>
+      <api>max-age=60</api>
+    </dynamic-content>
+  </caching>
+  
+  <!-- Connection pooling -->
+  <connection-pooling>
+    <max-connections>100</max-connections>
+    <min-connections>10</min-connections>
+    <connection-timeout>30000</connection-timeout>
+    <idle-timeout>600000</idle-timeout>
+  </connection-pooling>
+  
+  <!-- Session management -->
+  <session-management>
+    <timeout>1800</timeout>
+    <persistence>false</persistence>
+    <tracking-mode>COOKIE</tracking-mode>
+  </session-management>
+  
+  <!-- Security headers -->
+  <security-headers>
+    <x-frame-options>DENY</x-frame-options>
+    <x-content-type-options>nosniff</x-content-type-options>
+    <x-xss-protection>1; mode=block</x-xss-protection>
+    <strict-transport-security>max-age=31536000; includeSubDomains</strict-transport-security>
+    <content-security-policy>default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';</content-security-policy>
+  </security-headers>
+  
+  <!-- Performance monitoring -->
+  <monitoring>
+    <enabled>true</enabled>
+    <metrics>
+      <response-time>true</response-time>
+      <throughput>true</throughput>
+      <error-rate>true</error-rate>
+      <memory-usage>true</memory-usage>
+      <cpu-usage>true</cpu-usage>
+    </metrics>
+    <logging>
+      <level>INFO</level>
+      <format>JSON</format>
+    </logging>
+  </monitoring>
+  
+  <!-- Resource optimization -->
+  <resource-optimization>
+    <minification>
+      <css>true</css>
+      <javascript>true</javascript>
+      <html>true</html>
+    </minification>
+    <bundling>
+      <enabled>true</enabled>
+      <max-size>250000</max-size>
+    </bundling>
+    <image-optimization>
+      <enabled>true</enabled>
+      <formats>webp,avif</formats>
+      <quality>85</quality>
+    </image-optimization>
+  </resource-optimization>
+  
+  <!-- CDN configuration -->
+  <cdn>
+    <enabled>false</enabled>
+    <domains>
+      <domain>cdn.example.com</domain>
+    </domains>
+    <fallback>true</fallback>
+  </cdn>
+  
+  <!-- Database optimization -->
+  <database>
+    <connection-pool>HikariCP</connection-pool>
+    <query-caching>true</query-caching>
+    <batch-processing>true</batch-processing>
+    <connection-leak-detection>true</connection-leak-detection>
+  </database>
+  
+  <!-- Async processing -->
+  <async-processing>
+    <enabled>true</enabled>
+    <thread-pool-size>20</thread-pool-size>
+    <queue-capacity>1000</queue-capacity>
+    <timeout>30000</timeout>
+  </async-processing>
+</performance-config>
