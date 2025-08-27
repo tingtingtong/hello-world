@@ -20,6 +20,15 @@
 
     <plugins>
       <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <packagingExcludes>
+            **/*.map, **/*.md, **/*.scss, **/*.less, **/.DS_Store, **/Thumbs.db
+          </packagingExcludes>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.mortbay.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
       </plugin>
